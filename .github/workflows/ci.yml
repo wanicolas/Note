@@ -82,7 +82,7 @@ jobs:
 
       - name: Install Dependencies
         working-directory: frontend
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: Security Audit (npm audit)
         working-directory: frontend
@@ -137,7 +137,7 @@ jobs:
 
       - name: Install Frontend Dependencies
         working-directory: frontend
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: Start Backend Service
         working-directory: backend
