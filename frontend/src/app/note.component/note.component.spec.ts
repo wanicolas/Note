@@ -33,7 +33,6 @@
 //   });
 // });
 
-
 // ---
 
 import { provideRouter } from '@angular/router';
@@ -48,7 +47,7 @@ describe('Note', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NoteComponent],
-      providers: [provideRouter([])]
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NoteComponent);

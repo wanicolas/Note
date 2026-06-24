@@ -8,10 +8,10 @@ import { Component } from '@angular/core';
 class DummyNotesComponent {}
 
 const settle = async () => {
-    await Promise.resolve();
-    await new Promise((r) => setTimeout(r, 0));
-    await Promise.resolve();
-  };
+  await Promise.resolve();
+  await new Promise((r) => setTimeout(r, 0));
+  await Promise.resolve();
+};
 
 describe('NoteDetailsComponent (unit)', () => {
   let component: NoteDetailsComponent;

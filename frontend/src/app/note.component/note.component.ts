@@ -10,7 +10,7 @@ import { Note } from '@/models/note';
   styleUrl: './note.component.css',
 })
 export class NoteComponent {
-    @Input() note!: Note;
+  @Input() note!: Note;
   @Output() delete = new EventEmitter<Note>();
 
   onDelete(event: Event) {
