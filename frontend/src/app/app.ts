@@ -1,22 +1,24 @@
-import { Component, signal, inject } from '@angular/core';
-import { RouterOutlet, RouterLink, Router } from '@angular/router';
-import { NgIf } from '@angular/common';
-import { AuthService } from './services/auth.service';
+import { Component, inject, signal } from '@angular/core';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, RouterLink, NgIf],
+  standalone: true, 
+  imports: [RouterOutlet, RouterLink],
   templateUrl: './app.html',
-  styleUrl: './app.css',
+  styleUrl: './app.css'
 })
 export class App {
   protected readonly title = signal('note');
-  auth = inject(AuthService);
+  
   private router = inject(Router);
 
+  hasToken = !!localStorage.getItem("token");
+
   logout() {
-    this.auth.logout();
+    localStorage.removeItem("token");
+    this.hasToken = false; 
     this.router.navigate(['/login']);
   }
+
 }

@@ -1,28 +1,136 @@
-<main class="min-h-screen bg-slate-50 text-slate-900">
-  <div class="mx-auto max-w-3xl px-6 py-10">
-    <header class="mb-8 flex justify-between items-start">
-      <div>
-        <p class="text-xs uppercase tracking-[0.3em] text-slate-500">Notes</p>
-        <h1 class="mt-2 text-3xl font-semibold">Liste des notes</h1>
-        <p class="mt-1 text-sm text-slate-600">Notes en lecture seule</p>
-      </div>
-      <ng-container *ngIf="!auth.isLoggedIn(); else logged">
-        <a
-          routerLink="/login"
-          class="text-sm font-medium text-slate-700 hover:text-slate-900 border border-slate-200 rounded-lg px-3 py-1"
-        >
-          Connexion
-        </a>
-      </ng-container>
-      <ng-template #logged>
-        <button
-          (click)="logout()"
-          class="logout text-sm font-medium text-slate-700 hover:text-slate-900 border border-slate-200 rounded-lg px-3 py-1"
-        >
-          Déconnexion
-        </button>
-      </ng-template>
-    </header>
-    <router-outlet></router-outlet>
+<style>
+  :host {
+    --bright-blue: oklch(51.01% 0.274 263.83);
+    --electric-violet: oklch(53.18% 0.28 296.97);
+    --french-violet: oklch(47.66% 0.246 305.88);
+    --vivid-pink: oklch(69.02% 0.277 332.77);
+    --hot-red: oklch(61.42% 0.238 15.34);
+    --orange-red: oklch(63.32% 0.24 31.68);
+
+    --gray-900: oklch(19.37% 0.006 300.98);
+    --gray-700: oklch(36.98% 0.014 302.71);
+    --gray-400: oklch(70.9% 0.015 304.04);
+
+    --red-to-pink-to-purple-vertical-gradient: linear-gradient(
+      180deg,
+      var(--orange-red) 0%,
+      var(--vivid-pink) 50%,
+      var(--electric-violet) 100%
+    );
+
+    --red-to-pink-to-purple-horizontal-gradient: linear-gradient(
+      90deg,
+      var(--orange-red) 0%,
+      var(--vivid-pink) 50%,
+      var(--electric-violet) 100%
+    );
+
+    --pill-accent: var(--bright-blue);
+
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1 {
+    font-size: 3.125rem;
+    color: var(--gray-900);
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -0.125rem;
+    margin: 0;
+    font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
+  }
+
+  p {
+    margin: 0;
+    color: var(--gray-700);
+  }
+
+  main {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    box-sizing: inherit;
+    position: relative;
+  }
+
+  .angular-logo {
+    max-width: 9.2rem;
+  }
+
+  .content {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 700px;
+    margin-bottom: 3rem;
+  }
+
+  .content h1 {
+    margin-top: 1.75rem;
+  }
+
+  .content p {
+    margin-top: 1.5rem;
+  }
+
+  .divider {
+    width: 1px;
+    background: var(--red-to-pink-to-purple-vertical-gradient);
+    margin-inline: 0.5rem;
+  }
+
+  @media screen and (max-width: 650px) {
+    .content {
+      flex-direction: column;
+      width: max-content;
+    }
+
+    .divider {
+      height: 1px;
+      width: 100%;
+      background: var(--red-to-pink-to-purple-horizontal-gradient);
+      margin-block: 1.5rem;
+    }
+  }
+
+  
+.linklike {
+  background: none;
+  border: none;
+  color: #0a58ca;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.linklike:hover { color: #084298; }
+
+</style>
+
+<main class="main">
+  <div class="content">
+    <div class="left-side">
+      <h1>Hello, {{ title() }}</h1>
+      <router-outlet></router-outlet>
+    </div>
+    <div class="divider" role="separator" aria-label="Divider"></div>
+    <div class="right-side" style="display:flex; gap:12px; align-items:center; margin-bottom:12px">
+      <a routerLink="/notes">Notes</a>
+      @if(hasToken) {
+        <button type="button" class="linklike logout" (click)="logout()">Logout</button>
+      } @else {
+        <a routerLink="/login">Login</a>
+      }
+    </div>
   </div>
 </main>

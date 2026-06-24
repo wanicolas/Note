@@ -1,0 +1,10 @@
+<div>
+  <a routerLink="/notes">Retour à la liste</a>
+</div>
+
+@if (note) {
+  <h2>Détail de la note</h2>
+  <p><strong>Titre :</strong> {{ note.title }}</p>
+  <p><strong>Contenu :</strong> {{ note.content }}</p>
+  <button type="button" class="linklike" (click)="delete()">Delete</button>
+}

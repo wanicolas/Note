@@ -1,0 +1,17 @@
+<h2>Connexion</h2>
+
+<form (ngSubmit)="submit()">
+  <div>
+    <label>Identifiant</label><br />
+    <input [(ngModel)]="model.username" name="username" required />
+  </div>
+
+  <div style="margin-top:8px">
+    <label>Mot de passe</label><br />
+    <input type="password" [(ngModel)]="model.password" name="password" required />
+  </div>
+
+  <button style="margin-top:12px">
+    Se connecter
+  </button>
+</form>

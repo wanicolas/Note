@@ -1,7 +1,8 @@
 describe('home page test', () => {
-  it('should display welcome message', () => {
-    cy.visit('http://localhost:4200');
-
-    cy.contains('notes').should('be.visible');
-  });
-});
+    it('hello displayed', () => {
+        // Act
+        cy.visit('http://localhost:4200');
+        // Assert
+        cy.contains('Hello').should('be.visible');
+    })
+})
