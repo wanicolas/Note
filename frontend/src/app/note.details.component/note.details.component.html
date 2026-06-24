@@ -1,0 +1,13 @@
+<a
+  routerLink="/notes"
+  class="text-sm font-medium text-slate-700 hover:text-slate-900 border border-slate-200 rounded-lg px-3 py-1"
+>
+  Retour à la liste des notes
+</a>
+
+<div class="flex items-start justify-between gap-3">
+  <h2 class="text-lg font-semibold text-slate-900">{{ note!.title }}</h2>
+  <span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-500">#{{ note!.id }}</span>
+</div>
+<p class="mt-2 text-sm leading-relaxed text-slate-700">{{ note!.content }}</p>
+<div *ngIf="!note">Ya pas de note frér...</div>

@@ -1,0 +1,28 @@
+<main class="min-h-screen bg-slate-50 text-slate-900">
+  <div class="mx-auto max-w-3xl px-6 py-10">
+    <header class="mb-8 flex justify-between items-start">
+      <div>
+        <p class="text-xs uppercase tracking-[0.3em] text-slate-500">Notes</p>
+        <h1 class="mt-2 text-3xl font-semibold">Liste des notes</h1>
+        <p class="mt-1 text-sm text-slate-600">Notes en lecture seule</p>
+      </div>
+      <ng-container *ngIf="!auth.isLoggedIn(); else logged">
+        <a
+          routerLink="/login"
+          class="text-sm font-medium text-slate-700 hover:text-slate-900 border border-slate-200 rounded-lg px-3 py-1"
+        >
+          Connexion
+        </a>
+      </ng-container>
+      <ng-template #logged>
+        <button
+          (click)="logout()"
+          class="logout text-sm font-medium text-slate-700 hover:text-slate-900 border border-slate-200 rounded-lg px-3 py-1"
+        >
+          Déconnexion
+        </button>
+      </ng-template>
+    </header>
+    <router-outlet></router-outlet>
+  </div>
+</main>
