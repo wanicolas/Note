@@ -10,9 +10,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './note.component.css',
 })
 export class NoteComponent implements OnInit {
-
   @Input() note!: Note;
 
-  ngOnInit(): void {  }
-
+  ngOnInit(): void {}
 }

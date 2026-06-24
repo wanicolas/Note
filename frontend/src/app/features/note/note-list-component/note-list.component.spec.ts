@@ -1,4 +1,3 @@
-
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { NoteListComponent } from './note-list.component';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
@@ -12,12 +11,8 @@ describe('NoteListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NoteListComponent],
-      providers: [
-        provideHttpClient(),
-        provideHttpClientTesting(),
-      ]
-    })
-    .compileComponents();
+      providers: [provideHttpClient(), provideHttpClientTesting()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NoteListComponent);
     component = fixture.componentInstance;
@@ -39,12 +34,11 @@ describe('NoteListComponent', () => {
     fixture.detectChanges();
 
     const req = httpMock.expectOne(() => true);
-    expect(req.request.method).toBe('GET'); 
+    expect(req.request.method).toBe('GET');
     req.flush(mockedNotes);
 
     //Assert
     expect(component).toBeTruthy();
     expect(component.notes.length).toBe(2);
   });
-
 });

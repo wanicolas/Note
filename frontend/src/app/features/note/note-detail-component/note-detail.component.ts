@@ -10,15 +10,14 @@ import { NoteService } from '../../../core/services/note.service';
   styleUrl: './note-detail.component.css',
 })
 export class NoteDetailComponent {
-
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private noteService = inject(NoteService);
   note = this.route.snapshot.data['note'];
-  id = this.route.snapshot.paramMap.get("id");
+  id = this.route.snapshot.paramMap.get('id');
 
-  delete() { 
-    if(!this.id) {
+  delete() {
+    if (!this.id) {
       return;
     }
     this.noteService.deleteNoteById(this.id).subscribe({
@@ -27,8 +26,7 @@ export class NoteDetailComponent {
       },
       error: (err) => {
         console.error('call api error : ', err);
-      }
+      },
     });
   }
-  
 }

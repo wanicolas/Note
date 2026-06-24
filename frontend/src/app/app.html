@@ -27,9 +27,18 @@
 
     --pill-accent: var(--bright-blue);
 
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
+    font-family:
+      'Inter',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      Helvetica,
+      Arial,
+      sans-serif,
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol';
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -42,9 +51,18 @@
     line-height: 100%;
     letter-spacing: -0.125rem;
     margin: 0;
-    font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
+    font-family:
+      'Inter Tight',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      Helvetica,
+      Arial,
+      sans-serif,
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol';
   }
 
   p {
@@ -103,18 +121,18 @@
     }
   }
 
-  
-.linklike {
-  background: none;
-  border: none;
-  color: #0a58ca;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  text-decoration: underline;
-}
-.linklike:hover { color: #084298; }
-
+  .linklike {
+    background: none;
+    border: none;
+    color: #0a58ca;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .linklike:hover {
+    color: #084298;
+  }
 </style>
 
 <main class="main">
@@ -124,9 +142,12 @@
       <router-outlet></router-outlet>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
-    <div class="right-side" style="display:flex; gap:12px; align-items:center; margin-bottom:12px">
+    <div
+      class="right-side"
+      style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px"
+    >
       <a routerLink="/notes">Notes</a>
-      @if(hasToken) {
+      @if (hasToken) {
         <button type="button" class="linklike logout" (click)="logout()">Logout</button>
       } @else {
         <a routerLink="/login">Login</a>

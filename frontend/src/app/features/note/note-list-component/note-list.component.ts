@@ -17,17 +17,16 @@ export class NoteListComponent implements OnInit {
   notes: Note[] = [];
 
   ngOnInit(): void {
-    this.noteService.getNotes()
-    .subscribe({
-      next:(notes) => {
+    this.noteService.getNotes().subscribe({
+      next: (notes) => {
         this.notes = notes ?? [];
-        console.info(notes)
+        console.info(notes);
         this.cdr.markForCheck();
       },
       error: (err) => {
         console.error('call api error : ', err);
         this.cdr.markForCheck();
-      }
+      },
     });
   }
 }

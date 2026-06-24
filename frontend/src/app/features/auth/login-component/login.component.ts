@@ -11,28 +11,25 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-
   private auth = inject(AuthService);
   private router = inject(Router);
 
   model = {
     username: '',
-    password: ''
+    password: '',
   };
 
   submit() {
-    this.auth.login(this.model)
-    .subscribe({
+    this.auth.login(this.model).subscribe({
       next: (response) => {
-        localStorage.setItem("username", response.username);
-        localStorage.setItem("token", response.token);
-        localStorage.setItem("roles", JSON.stringify(response.roles));
+        localStorage.setItem('username', response.username);
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('roles', JSON.stringify(response.roles));
         this.router.navigate(['/notes']);
       },
       error: (err) => {
         console.error('call api error : ', err);
-      }
+      },
     });
   }
-
 }

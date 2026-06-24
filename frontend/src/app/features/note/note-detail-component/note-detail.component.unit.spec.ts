@@ -8,22 +8,24 @@ import { of } from 'rxjs';
 describe('NoteDetail', () => {
   let component: NoteDetailComponent;
   let fixture: ComponentFixture<NoteDetailComponent>;
-  
+
   const noteServiceMock = {
-    deleteNoteById: jest.fn<ReturnType<NoteService['deleteNoteById']>, Parameters<NoteService['deleteNoteById']>>()
+    deleteNoteById: jest.fn<
+      ReturnType<NoteService['deleteNoteById']>,
+      Parameters<NoteService['deleteNoteById']>
+    >(),
   };
-  
+
   const routerMock: jest.Mocked<Pick<Router, 'navigate'>> = {
     navigate: jest.fn().mockResolvedValue(true as any),
   };
 
   beforeEach(async () => {
-    
     const mockedNote = { id: 1, title: 'title', content: 'content' };
 
     await TestBed.configureTestingModule({
       imports: [NoteDetailComponent],
-      providers: [        
+      providers: [
         {
           provide: ActivatedRoute,
           useValue: {
@@ -35,15 +37,14 @@ describe('NoteDetail', () => {
         },
         { provide: NoteService, useValue: noteServiceMock },
         { provide: Router, useValue: routerMock },
-      ]
-    })
-    .compileComponents();
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NoteDetailComponent);
     component = fixture.componentInstance;
   });
 
-    afterEach(async() => {
+  afterEach(async () => {
     jest.clearAllMocks();
   });
 
@@ -53,7 +54,7 @@ describe('NoteDetail', () => {
     expect(component.note).toBeDefined();
   });
 
-  it('should delete note service mock', async() => {
+  it('should delete note service mock', async () => {
     //Arrange
     noteServiceMock.deleteNoteById.mockReturnValueOnce(of({}));
 
@@ -65,5 +66,4 @@ describe('NoteDetail', () => {
     expect(noteServiceMock.deleteNoteById).toHaveBeenCalledWith('1');
     expect(routerMock.navigate).toHaveBeenCalledWith(['/notes']);
   });
-
 });

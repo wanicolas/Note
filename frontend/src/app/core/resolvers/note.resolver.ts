@@ -1,4 +1,3 @@
-
 import { ResolveFn, ActivatedRouteSnapshot } from '@angular/router';
 import { inject } from '@angular/core';
 import { NoteService } from '../services/note.service';

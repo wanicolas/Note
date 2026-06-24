@@ -14,10 +14,10 @@ import { Component } from '@angular/core';
 class DummyNotesComponent {}
 
 const settle = async () => {
-    await Promise.resolve();                     
-    await new Promise((r) => setTimeout(r, 0));  
-    await Promise.resolve();                     
-  };
+  await Promise.resolve();
+  await new Promise((r) => setTimeout(r, 0));
+  await Promise.resolve();
+};
 
 describe('NoteDetail', () => {
   let component: NoteDetailComponent;
@@ -26,17 +26,14 @@ describe('NoteDetail', () => {
   let router: Router;
 
   beforeEach(async () => {
-    
     const mockedNote = { id: 1, title: 'title', content: 'content' };
 
     await TestBed.configureTestingModule({
       imports: [NoteDetailComponent, DummyNotesComponent],
-      providers: [        
-        provideRouter(
-          [{ path: 'notes', component: DummyNotesComponent }]
-        ),
+      providers: [
+        provideRouter([{ path: 'notes', component: DummyNotesComponent }]),
         provideHttpClient(),
-        provideHttpClientTesting(),   
+        provideHttpClientTesting(),
         {
           provide: ActivatedRoute,
           useValue: {
@@ -46,17 +43,16 @@ describe('NoteDetail', () => {
             },
           },
         },
-      ]
-    })
-    .compileComponents();
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NoteDetailComponent);
     component = fixture.componentInstance;
-    httpMock = TestBed.inject(HttpTestingController);    
+    httpMock = TestBed.inject(HttpTestingController);
     router = TestBed.inject(Router);
   });
 
-  afterEach(async() => {
+  afterEach(async () => {
     httpMock.verify();
   });
 
@@ -66,20 +62,19 @@ describe('NoteDetail', () => {
     expect(component.note).toBeDefined();
   });
 
-  it('should delete with http mock', async() => {
+  it('should delete with http mock', async () => {
     //Arrange
 
     // Act
     component.delete();
 
     const req = httpMock.expectOne(`http://localhost:9000/notes/1`);
-    expect(req.request.method).toBe('DELETE'); 
-    expect(req.request.url).toContain('/1')
+    expect(req.request.method).toBe('DELETE');
+    expect(req.request.url).toContain('/1');
     req.flush(null, { status: 204, statusText: 'No Content' });
 
     // Assert
     await settle();
     expect(router.url).toBe('/notes');
   });
-
 });

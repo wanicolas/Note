@@ -7,9 +7,14 @@ import { authGuard } from './core/guards/auth.guard';
 import { adminGuard } from './core/guards/admin.guard';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'notes', pathMatch: 'full' },
-    { path: 'notes', component: NoteListComponent, canActivate: [authGuard] },
-    { path: 'notes/:id', component: NoteDetailComponent, resolve: { note : noteResolver}, canActivate: [authGuard, adminGuard]},
-    { path: 'login', component: LoginComponent },
-    { path: '**', redirectTo: 'notes'}
+  { path: '', redirectTo: 'notes', pathMatch: 'full' },
+  { path: 'notes', component: NoteListComponent, canActivate: [authGuard] },
+  {
+    path: 'notes/:id',
+    component: NoteDetailComponent,
+    resolve: { note: noteResolver },
+    canActivate: [authGuard, adminGuard],
+  },
+  { path: 'login', component: LoginComponent },
+  { path: '**', redirectTo: 'notes' },
 ];

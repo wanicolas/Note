@@ -3,17 +3,15 @@ import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 export const authInterceptor: HttpInterceptorFn = (request, next) => {
-    const router = inject(Router);
+  const router = inject(Router);
 
-    if (request.url.endsWith('/login')) {
-        return next(request);
-    }
+  if (request.url.endsWith('/login')) {
+    return next(request);
+  }
 
-    const token = localStorage.getItem("token");
-    
-    const requestWithHeader = request.clone(
-        { setHeaders: { Authorization: `Bearer ${token}` } }
-    );
+  const token = localStorage.getItem('token');
 
-    return next(requestWithHeader);
+  const requestWithHeader = request.clone({ setHeaders: { Authorization: `Bearer ${token}` } });
+
+  return next(requestWithHeader);
 };
